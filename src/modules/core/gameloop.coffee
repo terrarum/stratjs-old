@@ -1,10 +1,9 @@
 define (require) ->
-    FPSMeter = require 'fpsmeter'
+    FPSMeter = require 'FPSMeter'
     Stats =  require 'modules/core/stats'
 
     class Gameloop
         start: (options) ->
-            console.log "START"
             timestamp = ->
                 (if window.performance and window.performance.now then window.performance.now() else new Date().getTime())
 
@@ -15,17 +14,21 @@ define (require) ->
             slow = options.gamespeed # slow-motion value
             step = 1 / options.fps
             slowStep = slow * step
-            fpsmeter = new FPSMeter(document.getElementById('fpsmeter'),
-                decimals: 0
-                graph: true
-                theme: "dark"
-                left: 0
-                top: 0
-                position: 'relative'
-            )
+            showFPS = options.showFPS || false
+
+            if showFPS?
+                fpsmeter = new FPSMeter(document.getElementById('fpsmeter'),
+                    decimals: 0
+                    graph: true
+                    theme: "dark"
+                    left: 0
+                    top: 0
+                    position: 'relative'
+                )
 
             frame = =>
-                fpsmeter.tickStart()
+                if showFPS?
+                    fpsmeter.tickStart()
                 now = timestamp()
                 # dt = dt + Math.min(5, (now - last) / 1000)
                 dt += (now - last) / 1000
@@ -34,8 +37,12 @@ define (require) ->
                     options.update step
                 options.render dt / slow
                 last = now
-                fpsmeter.tick()
+
+                if showFPS?
+                    fpsmeter.tick()
+
                 requestAnimationFrame frame
                 return
 
             requestAnimationFrame frame
+

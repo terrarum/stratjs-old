@@ -18,6 +18,7 @@
     "bootstrap": "~3.2.0",
     "requirejs": "~2.1.15",
     "almond": "~0.3.0",
-    "jade": "~1.7.0"
+    "jade": "~1.7.0",
+    "fpsmeter": "~0.3.1"
   }
 }

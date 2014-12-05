@@ -4,5 +4,5 @@ require [
     "jade"
 ], ($, Game) ->
     game = new Game()
-    gameData = game.initGame()
-    game.start gameData
+    game.init()
+    game.start()
