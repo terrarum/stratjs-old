@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+    var name = "stratjs";
+
     grunt.initConfig({
 
         // Compile JS to single file. Only call this in production build,
@@ -59,10 +61,10 @@ module.exports = function(grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: 'dist/daynight.css'
+                    src: 'dist/style.css'
                 },
                 options: {
-                    proxy: 'http://localhost/daynight/dist/',
+                    proxy: 'http://localhost/' + name + '/dist/',
                     watchTask: true
                 }
             }
@@ -107,12 +109,12 @@ module.exports = function(grunt) {
         // Combine css files together.
         concat: {
             dev: {
-                src: ['bower_components/bootstrap/dist/css/bootstrap.css', 'dist/daynight.css'],
-                dest: 'dist/daynight.css'
+                src: ['bower_components/bootstrap/dist/css/bootstrap.css', 'dist/style.css'],
+                dest: 'dist/style.css'
             },
             prod: {
-                src: ['bower_components/bootstrap/dist/css/bootstrap.min.css', 'dist/daynight.css'],
-                dest: 'dist/daynight.css'
+                src: ['bower_components/bootstrap/dist/css/bootstrap.min.css', 'dist/style.css'],
+                dest: 'dist/style.css'
             }
         },
 
