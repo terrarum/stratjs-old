@@ -20,17 +20,17 @@ define (require) ->
                 fpsmeter = new FPSMeter(document.getElementById('fpsmeter'),
                     decimals: 0
                     graph: true
-                    theme: "dark"
-                    left: 0
-                    top: 0
-                    position: 'relative'
+                    theme: 'light'
+                    left: 'inherit'
+                    right: '10px'
+                    top: '10px'
                 )
 
             frame = =>
                 if showFPS?
                     fpsmeter.tickStart()
                 now = timestamp()
-                # dt = dt + Math.min(5, (now - last) / 1000)
+#                dt = dt + Math.min(5, (now - last) / 1000)
                 dt += (now - last) / 1000
                 while dt > slowStep
                     dt = dt - slowStep
